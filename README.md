@@ -68,13 +68,14 @@ component-name.theme--bright.active > .inner
 ### OOCSS but no BEM
 
 We encourage the idea of OOCSS to separate skin and structure, specially when building component that has different themes applied to it. 
-However we don't encourage using BEM as BEM encourage flatten rule declaration and don't encourage nested styles, and that make it unpleasant to code with. 
+However we don't encourage using BEM as BEM encourages flatten rule declarations with minimal nested styles, and that make it unpleasant to code with. 
 
-1. BEM developers are usually end up coding long, repeatitive, redundant and tedious css class names.
-2. The parent and child relationship expressed in BEM naming convention is a duplication of the natural html structure, when html gets restructured, developers will have to go back to change the BEM class name repeatitively for each declaration. Also people often forgot to go back to change the css name accordingly, with time, the code became unreadable.
-3. BEM make it hard to work with CSS preprocessors. When using css preprocessors, the nesting became much more pleasant to work with, you don't have to repeatitively coding the parent class as they support nesting coding format naturally, and by doing so, we can even scope the variable so it is only locally available, give the code a bit more neatness.
+1. BEM advocates that it lowers css specificity, it is a [half-truth](https://en.wikipedia.org/wiki/Half-truth), the true specificity can't be lowered as it is direct reflection of the complexity of the product. Instead BEM hides or shiftes the specificity to somewhere else -- when it lowers the specificity of selector, it also highers the specificity of each single selector names.
+1. As a result of above point, BEM developers are usually end up coding long, repeatitive, redundant and tedious css class names, which neither pleasant to look at nor fun to maintain with.
+1. The parent and child relationship expressed in BEM naming convention is a duplication of the natural html structure, when html gets restructured, developers will have to go back to change the BEM class name repeatitively for each declaration. Also people often forgot to go back to change the css name accordingly, with time, the code became unreadable.
+1. BEM make it harder to work with CSS preprocessors. When using css preprocessors, the nesting became much more pleasant to work with, you don't have to repeatitively coding the parent class as they support nesting coding format naturally. Also because of the flattened structure, preprocessor variables usually will have to be placed in global, which also often cause naming conflict especially when project grows bigger.
 
-So instead of BEM we use [Immediate child selector](#immediate-child-selector) to solve problems that BEM was trying to solve, with elegance that without redundancies and feel more nature to do so together with CSS preprocessors.
+So instead of BEM we use [Immediate child selector](#immediate-child-selector) to solve problems that BEM was trying to solve, with elegance and redundancies-free and it feels much more nature to do so when work with CSS preprocessors.
 
 ### Immediate child selector
 
