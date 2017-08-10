@@ -10,7 +10,7 @@
     - [Formatting](#formatting)
     - [OOCSS but no BEM](#oocss-but-no-bem)
     - [Immediate child selector](#immediate-child-selector)
-    - [Balanced margin over padding](#Balanced-margin-over-padding)
+    - [Balanced margin over padding](#balanced-margin-over-padding)
 
 ## Terminology
 
