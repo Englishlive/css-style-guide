@@ -98,4 +98,10 @@ Whenever it is ripe to use shadow DOM we shall embrace it ASAP, but that doesn't
 
 ### Balanced margin over padding
 
-Often in the pass you might saw lots of css toolkit, such as bootstrap, keeps setting only the margin-top or margin-left but leaves the margin-bottom or margin-right unset. These unbalances not only cause problem when reusing the style on RTL website, it also make it harder to build a highly modularised component system. Imagine if a `heading` component is followed by `terms and conditions` component immediately, because the margin is only set on `terms and conditions` style, the gap between them will be way too small for the `heading`. So to solve the simliar issue on the Y axis we utilise margin collapsing, it naturely choose the largest margin between 2 and the gift from CSS 1.0 and should be use whenever it is possible. For X axis we will at least make sure there are balanced margin so it is neater and friendlier to RTL website.
+Often in the pass you might saw lots of css toolkit, such as bootstrap, keeps setting only the `margin-top` or `margin-left` but leaves the `margin-bottom` or `margin-right` unset. 
+
+These unbalances not only cause problem when reusing the style on RTL website, it also makes it harder to build a highly modularised component system. 
+
+Imagine if a `heading` component is followed by `terms and conditions` component immediately, because the margin is only set on `terms and conditions` style, the gap between them will be way too small for the `heading`. 
+
+So to solve the simliar issue on the Y axis we utilise margin collapsing, it naturely choose the largest margin between 2 and the gift from CSS 1.0 and should be use whenever it is possible. For X axis we will at least make sure there are balanced margin so it is neater and friendlier to RTL website.
