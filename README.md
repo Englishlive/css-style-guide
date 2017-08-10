@@ -9,7 +9,7 @@
 1. [CSS](#css)
     - [Formatting](#formatting)
     - [OOCSS but no BEM](#oocss-but-no-bem)
-    - [Immediate child selector](#immediate-child-selector)
+    - [Immediate child selector `>`](#immediate-child-selector)
     - [Balanced margin over padding](#balanced-margin-over-padding)
 
 ## Terminology
@@ -70,32 +70,38 @@ component-name.theme--bright.active > .inner
 We encourage the idea of OOCSS to separate skin and structure, specially when building component that has different themes applied to it. 
 However we don't encourage using BEM as BEM encourages flatten rule declarations with minimal nested styles, and that make it unpleasant to code with. 
 
-1. BEM advocates that it lowers css specificity, it is a [half-truth](https://en.wikipedia.org/wiki/Half-truth), the true specificity can't be lowered as it is direct reflection of the complexity of the product. Instead BEM hides or shiftes the specificity to somewhere else -- when it lowers the specificity of selector, it also highers the specificity of each single selector names.
+1. BEM advocates that it lowers css specificity, it is a [half-truth](https://en.wikipedia.org/wiki/Half-truth), the true specificity can't be lowered as it is the direct reflection of the complexity of the product. Instead BEM hides or shiftes the specificity to somewhere else -- when it lowers the specificity of selector, it also highers the specificity of each single selector names.
 1. As a result of above point, BEM developers are usually end up coding long, repeatitive, redundant and tedious css class names, which neither pleasant to look at nor fun to maintain with.
 1. The parent and child relationship expressed in BEM naming convention is a duplication of the natural html structure, when html gets restructured, developers will have to go back to change the BEM class name repeatitively for each declaration. Also people often forgot to go back to change the css name accordingly, with time, the code became unreadable.
-1. BEM make it harder to work with CSS preprocessors. When using css preprocessors, the nesting became much more pleasant to work with, you don't have to repeatitively coding the parent class as they support nesting coding format naturally. Also because of the flattened structure, preprocessor variables usually will have to be placed in global, which also often cause naming conflict especially when project grows bigger.
+1. BEM makes it harder to work with CSS preprocessors. Preprocessors support nesting coding format naturally, but because BEM votes against it, the variables usually will have to be placed in global, which also often cause naming conflict especially when project grows bigger. (However there indeed is a workaround for BEM though, which you can use `&` symbol to make nesting style in preprocessors, but that ultimately leads to more inconsistencies when multiple modifiers are mixed, and more troubles when the team grows.)
+1. BEM makes more problems then it solves.
 
 So instead of BEM we use [Immediate child selector](#immediate-child-selector) to solve problems that BEM was trying to solve, with elegance and redundancies-free and it feels much more nature to do so when work with CSS preprocessors.
 
-### Immediate child selector
+### Immediate child selector `>`
 
 We heavily relies to immediate child selector `>` when building our components, here are the reasons:
 
-#### Using `>` makes the html structure and specificity clearer 
+#### It fails fast and loudly
 
-If you are nesting without `>`, you are very likely to forget to go back and correct the css specific when additional layer is added into html structure. Instead by using `>`, when extra layer is added or removed from html structure, the declaration immediate fail to target the original element, force developer to correct the specific of the element immediately.
+When coding in CSS, it is natural that you will have a html structure in mind. But sometime the structure we remembered can be wrong due to complexity of dom tree or javascript modification. With `>` nesting coding style if the structure you code with in mind is not correct, it won't let the code work half way through (which may cause hidden issue later when code shipped to live), instead it will fail immediately and loudly as the structure in CSS doesn't match, which helps you to spot the problem quickly and early. 
 
-#### Using `>` makes clear separation when components are nested
+#### It makes clear separation when components are nested
 
-If `>` is not used and when components are nested together, if both components use very commonly named css class such as `.inner`, it is very likely the inner component gets some styles from outer one. Using `>` specifically targets the element you want to apply style with so it won't penetrate to the descendant elements.
+When components are nested together, common css class such `.inner`, `.active` will need extra cautions as the inner one may inherit some styles from outer and cause chaotic.
+By using `>` to specifically targets the element you want to apply style with, there is no more accidental style penetration to worry about.
 
-#### Using `>` makes class name shorter and clearer
+#### It makes class name shorter and clearer
 
-`.stage.theme--birght.active` No more worrying over `.active` is used or styled somewhere else, you can use it straight way.
+`.stage.theme--birght.active` No more worrying over `.active` is used or styled somewhere else, you can use it straightaway.
 
 #### Immediate child selector with shadow DOM
 
-Whenever it is ripe to use shadow DOM we shall embrace it ASAP, but that doesn't mean we will have to abandon `>` because of it, `>` still has a lot of beneficials within the same component.
+Whenever it is ripe to use shadow DOM we shall embrace it ASAP, but that doesn't mean we will have to abandon `>`, `>` still has a lot of beneficials within the same component as mentioned above.
+
+#### The downside of `>`
+
+It duplicates the dom information into your CSS, but it won't be too much problem with the help of preprocessor, you can checkout the example inside [BEM vs `>` Nesting](./bem-vs-ics.md)
 
 ### Balanced margin over padding
 
