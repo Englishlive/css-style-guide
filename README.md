@@ -1,4 +1,4 @@
-# CSS / Less style guide
+# CSS style guide
 
 ## Table of Contents
 
@@ -6,7 +6,7 @@
     - [Rule Declaration](#rule-declaration)
     - [Selectors](#selectors)
     - [Properties](#properties)
-1. [CSS](#css)
+1. [Guide](#guide)
     - [Formatting](#formatting)
     - [OOCSS but no BEM](#oocss-but-no-bem)
     - [Immediate child selector `>`](#immediate-child-selector)
@@ -48,7 +48,7 @@ Finally, properties are what give the selected elements of a rule declaration th
 
 **[⬆ back to top](#table-of-contents)**
 
-## CSS
+## Guide
 
 ### Formatting
 
@@ -112,3 +112,5 @@ These unbalances not only cause problem when reusing the style on RTL website, i
 Imagine if a `heading` component is followed by `terms and conditions` component immediately, because the margin is only set on `terms and conditions` style, the gap between them will be way too small for the `heading`. 
 
 So to solve the simliar issue on the Y axis we utilise margin collapsing, it naturely choose the largest margin between 2 and the gift from CSS 1.0 and should be use whenever it is possible. For X axis we will at least make sure there are balanced margin so it is neater and friendlier to RTL website.
+
+**[⬆ back to top](#table-of-contents)**
