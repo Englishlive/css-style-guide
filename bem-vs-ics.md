@@ -100,7 +100,6 @@ So what if we write the same piece of code with `>` nesting.
 ```less
 .button
 {
-    ...
     .button-structure(@inner:{}; @text:{})
     {
         > .inner
@@ -135,10 +134,10 @@ So what if we write the same piece of code with `>` nesting.
       }
     }
 
-    .button-structure(@inner:{},@text:{});
-    .button-structure(@modifier:'active'; @inner:{}, @text:{});
-    .button-structure(@modifier:'orange'; @inner:{}, @text:{});
-    .button-structure(@modifier:'active'; @theme-modifier:'oranage'; @inner:{}, @text:{});
+    .structure(@inner:{};@text:{});
+    .structure(@modifier:'active'; @inner:{}; @text:{});
+    .structure(@modifier:'orange'; @inner:{}; @text:{});
+    .structure(@modifier:'active'; @theme-modifier:'oranage'; @inner:{}; @text:{});
 }
 ```
 
