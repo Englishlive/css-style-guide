@@ -101,7 +101,7 @@ So what if we write the same piece of code with `>` nesting.
 .button
 {
     ...
-    .button-structure(@inner, @text)
+    .button-structure(@inner:{}; @text:{})
     {
         > .inner
         {
@@ -113,21 +113,32 @@ So what if we write the same piece of code with `>` nesting.
         }
     }
 
-    .button-structure({},{});
+    .structure(@modifier:'';@theme-modifier:'';@inner:{}; @text:{})
+    {
+      & when (@modifier='') 
+      {
+        .button-structure(@inner, @text);
+      }
+      & when (not(@modifier='')) and (@theme-modifier='')
+      {
+        &.@{modifier}
+        {
+          .button-structure(@inner, @text);   
+        }
+      }
+      & when (not(@modifier='')) and (not(@theme-modifier=''))
+      {
+        &.@{modifier}.@{theme-modifier}
+        {
+          .button-structure(@inner, @text);   
+        }
+      }
+    }
 
-    &.active
-    {
-        .button-structure({},{});
-    }
-    &.orange
-    {
-        .button-structure({},{});
-    }
-
-    &.orange.active
-    {
-        .button-structure({},{});
-    }
+    .button-structure(@inner:{},@text:{});
+    .button-structure(@modifier:'active'; @inner:{}, @text:{});
+    .button-structure(@modifier:'orange'; @inner:{}, @text:{});
+    .button-structure(@modifier:'active'; @theme-modifier:'oranage'; @inner:{}, @text:{});
 }
 ```
 
