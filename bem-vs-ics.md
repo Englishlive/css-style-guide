@@ -135,9 +135,9 @@ So what if we write the same piece of code with `>` nesting.
     }
 
     .structure(@inner:{};@text:{});
-    .structure(@modifier:'active'; @inner:{}; @text:{});
-    .structure(@modifier:'orange'; @inner:{}; @text:{});
-    .structure(@modifier:'active'; @theme-modifier:'oranage'; @inner:{}; @text:{});
+    .structure(@modifier:active; @inner:{}; @text:{});
+    .structure(@modifier:orange; @inner:{}; @text:{});
+    .structure(@modifier:active; @theme-modifier:orange; @inner:{}; @text:{});
 }
 ```
 
