@@ -67,10 +67,10 @@ component-name.theme--bright.active > .inner
 
 ### OOCSS but no BEM
 
-We encourage the idea of OOCSS to separate skin and structure, specially when building component that has different themes applied to it. 
-However we don't encourage using BEM as BEM encourages flatten rule declarations with minimal nested styles, and that make it unpleasant to code with. 
+We encourage the idea of OOCSS to separate skin and structure, especially when building component that has different themes applied to it. 
+However we don't encourage using BEM as BEM encourages flatten rule declarations with minimal nested styles for the following reasons: 
 
-1. BEM advocates that it lowers css specificity, it is a [half-truth](https://en.wikipedia.org/wiki/Half-truth), the true specificity can't be lowered as it is the direct reflection of the complexity of the product. Instead BEM hides or shiftes the specificity to somewhere else -- when it lowers the specificity of selector, it also highers the specificity of each single selector names.
+1. BEM advocates that it lowers css specificity, it is a [half-truth](https://en.wikipedia.org/wiki/Half-truth), the true specificity can't be lowered as it is the direct reflection of the complexity of the html structure. Instead BEM hides or shiftes the specificity to somewhere else -- when it lowers the specificity of selector, it highers the specificity of each single selector names.
 1. As a result of above point, BEM developers are usually end up coding long, repeatitive, redundant and tedious css class names, which neither pleasant to look at nor fun to maintain with.
 1. The parent and child relationship expressed in BEM naming convention is a duplication of the natural html structure, when html gets restructured, developers will have to go back to change the BEM class name repeatitively for each declaration. Also people often forgot to go back to change the css name accordingly, with time, the code became unreadable.
 1. BEM makes it harder to work with CSS preprocessors. Preprocessors support nesting coding format naturally, but because BEM votes against it, the variables usually will have to be placed in global, which also often cause naming conflict especially when project grows bigger. (However there indeed is a workaround for BEM though, which you can use `&` symbol to make nesting style in preprocessors, but that ultimately leads to more inconsistencies when multiple modifiers are mixed, and more troubles when the team grows.)
@@ -84,7 +84,7 @@ We heavily relies to immediate child selector `>` when building our components, 
 
 #### It fails fast and loudly
 
-When coding in CSS, it is natural that you will have a html structure in mind. But sometime the structure we remembered can be wrong due to complexity of dom tree or javascript modification. With `>` nesting coding style if the structure you code with in mind is not correct, it won't let the code work half way through (which may cause hidden issue later when code shipped to live), instead it will fail immediately and loudly as the structure in CSS doesn't match, which helps you to spot the problem quickly and early. 
+When coding in CSS, it is natural that you will have the html structure in mind. But sometime the structure we remembered can be wrong due to complexity of dom tree or javascript modification. With `>` nesting coding style if the structure you code with in mind is not correct, it won't let the code work half way through (which may cause hidden issue later when code shipped to live), instead it will fail immediately and loudly as the structure in CSS doesn't match, which helps you to spot the problem quickly and early. 
 
 #### It makes clear separation when components are nested
 
